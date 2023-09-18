@@ -60,5 +60,9 @@ public class DagligFast extends Ordination{
 
         return this.getClass().getName();
     }
+
+    public Dosis[] getDoser() {
+        return doser;
+    }
     // TODO
 }

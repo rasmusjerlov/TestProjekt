@@ -53,4 +53,10 @@ public class DagligSkaev extends Ordination {
     public String getType() {
         return this.getClass().getName();
     }
+
+    public Dosis[] getDoser() {
+        Dosis[] doserArray = new Dosis[doser.size()];
+        doser.toArray(doserArray);
+        return doserArray;
+    }
 }
