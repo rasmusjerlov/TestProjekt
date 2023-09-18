@@ -1,11 +1,28 @@
 package ordination;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class DagligFast extends Ordination{
     private Dosis dosis;
     private Dosis[] doser = new Dosis[4];
 
+    public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Dosis dosis) {
+        super(startDen, slutDen, laegemiddel);
+        this.dosis = dosis;
+    }
+
+    public void opretDosis (LocalTime tid, double antal) {
+        Dosis dosis = new Dosis(tid, antal);
+        for (int i = 0; i < doser.length; i++) {
+            if (doser[i] == null) {
+                doser[i] = dosis;
+            }
+        }
+    }
     @Override
     public double samletDosis() {
+
         return 0;
     }
 
