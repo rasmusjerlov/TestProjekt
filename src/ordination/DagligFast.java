@@ -14,7 +14,7 @@ public class DagligFast extends Ordination{
 
     public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Dosis dosis) {
         super(startDen, slutDen, laegemiddel);
-        this.doser = dosis;
+        this.doser = doser;
     }
 
     public void opretDosis (LocalTime tid, double antal) {

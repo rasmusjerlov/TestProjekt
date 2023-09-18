@@ -1,11 +1,13 @@
 package ordination;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Patient {
     private String cprnr;
     private String navn;
     private double vaegt;
+    private ArrayList<Ordination> ordinationer = new ArrayList<>();
 
     public Patient(String cprnr, String navn, double vaegt) {
         this.cprnr = cprnr;
@@ -43,4 +45,7 @@ public class Patient {
         ordination.setPatient(this);
     }
 
+    public ArrayList<Ordination> getOrdinationer() {
+        return ordinationer;
+    }
 }

@@ -66,8 +66,8 @@ public class Controller {
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
 			LocalDate slutDen, Laegemiddel laegemiddel,
 			ArrayList<Dosis> doser) {
-		DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel, doser);
-		return null;
+		DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel);
+		return ds;
 	}
 
 	/**
@@ -77,7 +77,12 @@ public class Controller {
 	 * Pre: ordination og dato er ikke null
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-		// TODO
+		if (dato.isBefore(ordination.getStartDen())) {
+			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
+		}
+		if (dato.isAfter(ordination.getSlutDen())) {
+			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
+		}
 	}
 
 	/**
@@ -107,8 +112,20 @@ public class Controller {
 	 */
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
-		// TODO
-		return 0;
+		int patientCount = 0;
+		ArrayList<Patient> patienter = new ArrayList<>(storage.getAllPatienter());
+		for (Patient p : patienter) {
+			double patientvægt = p.getVaegt();
+			ArrayList<Ordination> ordinationer = new ArrayList<>(p.getOrdinationer());
+			for (Ordination o : ordinationer) {
+				if (o.getLaegemiddel() == laegemiddel) {
+					if (patientvægt >= vægtStart && patientvægt <= vægtSlut) {
+						patientCount ++;
+					}
+				}
+			}
+		}
+		return patientCount;
 	}
 
 	public List<Patient> getAllPatienter() {
