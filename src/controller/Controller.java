@@ -36,6 +36,7 @@ public class Controller {
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen,
 			Patient patient, Laegemiddel laegemiddel, double antal) {
 		PN pn = new PN(startDen, slutDen, laegemiddel, antal);
+		if (startDen.isAfter(slutDen)) throw new IllegalArgumentException("Startdato er efter slutdato");
 		return pn;
 	}
 
@@ -45,12 +46,12 @@ public class Controller {
 	 * Pre: startDen, slutDen, patient og laegemiddel er ikke null
 	 * Pre: margenAntal, middagAntal, aftanAntal, natAntal >= 0
 	 */
-	public DagligFast opretDagligFastOrdination(LocalDate startDen,
-			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
-			double morgenAntal, double middagAntal, double aftenAntal,
-			double natAntal) {
-		// TODO
-		return null;
+	public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel,
+												double morgenAntal, double middagAntal, double aftenAntal,
+												double natAntal, Dosis dosis, Patient patient) {
+		DagligFast df = new DagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal, dosis, patient);
+		if (startDen.isAfter(slutDen)) throw new IllegalArgumentException("Startdato er efter slutdato");
+		return df;
 	}
 
 	/**
@@ -62,9 +63,9 @@ public class Controller {
 	 * Pre: alle tal i antalEnheder > 0
 	 */
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
-			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
+			LocalDate slutDen, Laegemiddel laegemiddel, Patient patient,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
-		// TODO
+		DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel, patient, klokkeSlet, antalEnheder);
 		return null;
 	}
 
