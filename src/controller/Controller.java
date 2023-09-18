@@ -66,6 +66,7 @@ public class Controller {
 			LocalDate slutDen, Laegemiddel laegemiddel, Patient patient,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
 		DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel, patient, klokkeSlet, antalEnheder);
+		System.out.println(" ");
 		return null;
 	}
 
