@@ -14,7 +14,7 @@ public class DagligFast extends Ordination{
 
     public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Dosis dosis) {
         super(startDen, slutDen, laegemiddel);
-        this.dosis = dosis;
+        this.doser = dosis;
     }
 
     public void opretDosis (LocalTime tid, double antal) {
@@ -55,8 +55,15 @@ public class DagligFast extends Ordination{
 
     @Override
     public double doegnDosis() {
-        return 0;
+        double totalDosis = 0.0;
+        for (Dosis dosis : doser) {
+            if (dosis != null){
+                totalDosis += dosis.getAntal();
+            }
+        }
+        return totalDosis;
     }
+
 
     @Override
     public String getType() {
