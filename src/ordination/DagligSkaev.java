@@ -5,18 +5,17 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class DagligSkaev extends Ordination{
-    private ArrayList<Dosis> dosis = new ArrayList<>();
+    private ArrayList<Dosis> doser = new ArrayList<>();
     private Patient patient;
 
-    public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Patient patient, ArrayList<Dosis> dosis) {
-        super(startDen, slutDen, laegemiddel, patient);
-        this.dosis = dosis;
+    public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
+        super(startDen, slutDen, laegemiddel);
     }
 
 
     public void opretDosis(LocalTime tid, double antal) {
         Dosis dosis = new Dosis(tid, antal);
-        this.dosis.add(dosis);
+        this.doser.add(dosis);
     }
 
     @Override

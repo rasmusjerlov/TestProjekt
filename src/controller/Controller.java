@@ -5,6 +5,7 @@ import storage.Storage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -34,7 +35,7 @@ public class Controller {
 	 * @return opretter og returnerer en PN ordination.
 	 */
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen,
-			Patient patient, Laegemiddel laegemiddel, double antal) {
+								Laegemiddel laegemiddel, double antal) {
 		PN pn = new PN(startDen, slutDen, laegemiddel, antal);
 		if (startDen.isAfter(slutDen)) throw new IllegalArgumentException("Startdato er efter slutdato");
 		return pn;
@@ -48,7 +49,7 @@ public class Controller {
 	 */
 	public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel,
 												double morgenAntal, double middagAntal, double aftenAntal,
-												double natAntal, Dosis dosis, Patient patient) {
+												double natAntal, Dosis dosis) {
 		DagligFast df = new DagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal, dosis, patient);
 		if (startDen.isAfter(slutDen)) throw new IllegalArgumentException("Startdato er efter slutdato");
 		return df;
@@ -63,10 +64,9 @@ public class Controller {
 	 * Pre: alle tal i antalEnheder > 0
 	 */
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
-			LocalDate slutDen, Laegemiddel laegemiddel, Patient patient,
-			LocalTime[] klokkeSlet, double[] antalEnheder) {
-		DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel, patient, klokkeSlet, antalEnheder);
-		System.out.println(" ");
+			LocalDate slutDen, Laegemiddel laegemiddel,
+			ArrayList<Dosis> doser) {
+		DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel, doser);
 		return null;
 	}
 

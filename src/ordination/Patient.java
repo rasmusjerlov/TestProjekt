@@ -7,13 +7,10 @@ public class Patient {
     private String navn;
     private double vaegt;
 
-    private ArrayList<Patient> patienter = new ArrayList<>();
-
     public Patient(String cprnr, String navn, double vaegt) {
         this.cprnr = cprnr;
         this.navn = navn;
         this.vaegt = vaegt;
-        System.out.println('2fghjk');
     }
 
     public String getCprnr() {
@@ -41,6 +38,9 @@ public class Patient {
     @Override
     public String toString(){
         return navn + "  " + cprnr;
+    }
+    public void addOrdination(Ordination ordination){
+        ordination.setPatient(this);
     }
 
 }
