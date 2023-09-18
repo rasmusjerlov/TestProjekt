@@ -37,21 +37,6 @@ public class DagligFast extends Ordination{
     }
 
 
-    public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
-        super(startDen, slutDen, laegemiddel);
-
-    }
-
-    public void opretDosis(LocalTime tid, double antal) {
-        Dosis dosis = new Dosis(tid, antal);
-        for (int i = 0; i < doser.length; i++) {
-            if (doser[i] == null){
-                doser[i] = dosis;
-            }
-
-        }
-    }
-
 
     @Override
     public double doegnDosis() {
