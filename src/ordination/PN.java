@@ -20,7 +20,7 @@ public class PN {
 
     public double doegnDosis() {
         // TODO
-        return 0.0;
+            return 0.0;
     }
 
 
