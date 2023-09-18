@@ -3,8 +3,13 @@ package ordination;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+
 public class DagligFast extends Ordination{
-    private Dosis dosis;
+
     private Dosis[] doser = new Dosis[4];
 
     public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Dosis dosis) {
@@ -26,6 +31,23 @@ public class DagligFast extends Ordination{
         return 0;
     }
 
+
+    public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
+        super(startDen, slutDen, laegemiddel);
+
+    }
+
+    public void opretDosis(LocalTime tid, double antal) {
+        Dosis dosis = new Dosis(tid, antal);
+        for (int i = 0; i < doser.length; i++) {
+            if (doser[i] == null){
+                doser[i] = dosis;
+            }
+
+        }
+    }
+
+
     @Override
     public double doegnDosis() {
         return 0;
@@ -33,9 +55,8 @@ public class DagligFast extends Ordination{
 
     @Override
     public String getType() {
-        return null;
+
+        return this.getClass().getName();
     }
-
-
     // TODO
 }
