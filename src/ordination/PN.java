@@ -1,10 +1,12 @@
 package ordination;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class PN extends Ordination{
 
     private double antalEnheder;
+    private ArrayList<LocalDate> antalGivet = new ArrayList<>();
 
     public PN(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, double antalEnheder) {
         super(startDen, slutDen, laegemiddel);
@@ -18,25 +20,30 @@ public class PN extends Ordination{
      * @param givesDen
      * @return
      */
+
     public boolean givDosis(LocalDate givesDen) {
-        // TODO
-        return false;   
+        LocalDate start = super.getStartDen();
+        LocalDate end = super.getSlutDen();
+        if(givesDen.isAfter(start) || givesDen.equals(start) && givesDen.equals(end) || givesDen.isBefore(end)){
+            antalGivet.add(givesDen);
+            return true;
+        }
+        return false;
     }
 
     public double doegnDosis() {
         // TODO
-            return 0.0;
+        return 0.0;
     }
 
     @Override
     public String getType() {
-        return null;
+        return this.getClass().getName();
     }
 
 
     public double samletDosis() {
-        // TODO
-        return 0.0;
+        return getAntalGangeGivet() * antalEnheder;
     }
 
     /**
@@ -44,8 +51,7 @@ public class PN extends Ordination{
      * @return
      */
     public int getAntalGangeGivet() {
-        // TODO
-        return-1;
+        return  antalGivet.size() + 1;
     }
 
     public double getAntalEnheder() {
