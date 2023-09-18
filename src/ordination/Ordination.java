@@ -7,6 +7,9 @@ public abstract class Ordination {
     private LocalDate startDen;
     private LocalDate slutDen;
 
+    public Ordination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
+    }
+
     // TODO Link til Laegemiddel
     // TODO constructor (med specifikation)
 
