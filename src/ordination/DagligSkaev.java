@@ -39,7 +39,7 @@ public class DagligSkaev extends Ordination{
         }
         else {
             double totalDosis = 0.0;
-            for (Dosis d : dosis) {
+            for (Dosis d : doser) {
                 totalDosis += d.getAntal();
             }
             return totalDosis / antalDage;
