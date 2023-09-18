@@ -13,13 +13,7 @@ public class PN extends Ordination{
         this.antalEnheder = antalEnheder;
     }
 
-    /**
-     * Registrerer at der er givet en dosis paa dagen givesDen
-     * Returnerer true hvis givesDen er inden for ordinationens gyldighedsperiode og datoen huskes
-     * Retrurner false ellers og datoen givesDen ignoreres
-     * @param givesDen
-     * @return
-     */
+
 
     public boolean givDosis(LocalDate givesDen) {
         LocalDate start = super.getStartDen();
@@ -32,6 +26,9 @@ public class PN extends Ordination{
     }
 
     public double doegnDosis() {
+        //gennemsnit pr døgn
+
+
         int antalGangeGivet = getAntalGangeGivet();
         int antalDage = antalDage();
 
@@ -50,10 +47,7 @@ public class PN extends Ordination{
         return getAntalGangeGivet() * antalEnheder;
     }
 
-    /**
-     * Returnerer antal gange ordinationen er anvendt
-     * @return
-     */
+
     public int getAntalGangeGivet() {
         return  antalGivet.size() + 1;
     }

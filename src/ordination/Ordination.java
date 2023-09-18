@@ -63,7 +63,5 @@ public abstract class Ordination {
         return laegemiddel;
     }
 
-    public void setLaegemiddel(Laegemiddel laegemiddel) {
-        this.laegemiddel = laegemiddel;
-    }
+
 }

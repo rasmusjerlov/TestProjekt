@@ -1,6 +1,8 @@
 package ordination;
 
 import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Patient {
@@ -34,9 +36,29 @@ public class Patient {
     public void setVaegt(double vaegt){
         this.vaegt = vaegt;
     }
-
     //TODO: Metoder (med specifikation) til at vedligeholde link til Ordination
 
+    public PN creatPn(LocalDate startDen, LocalDate slutDen,
+                      Laegemiddel laegemiddel, double antal){
+        PN pn = new PN(startDen, slutDen, laegemiddel, antal);
+        ordinationer.add(pn);
+        return pn;
+    }
+    public DagligFast createDagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel,
+                                       double morgenAntal, double middagAntal, double aftenAntal,
+                                       double natAntal){
+        DagligFast df = new DagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
+        ordinationer.add(df);
+        return df;
+    }
+    public DagligSkaev createDagligSkaev(LocalDate startDen,
+                                         LocalDate slutDen, Laegemiddel laegemiddel,
+                                         LocalTime[] klokkeSlet, double[] antalEnheder){
+        DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel, klokkeSlet, antalEnheder);
+        ordinationer.add(ds);
+        return ds;
+
+    }
     @Override
     public String toString(){
         return navn + "  " + cprnr;
