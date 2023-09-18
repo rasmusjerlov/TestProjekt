@@ -32,8 +32,12 @@ public class PN extends Ordination{
     }
 
     public double doegnDosis() {
-        // TODO
-        return 0.0;
+        int antalGangeGivet = getAntalGangeGivet();
+        int antalDage = antalDage();
+
+        double gennemsnitligDosisPrDag = (antalGangeGivet * antalEnheder) / antalDage;
+
+        return gennemsnitligDosisPrDag;
     }
 
     @Override
