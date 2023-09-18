@@ -50,7 +50,7 @@ public class Controller {
 	public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel,
 												double morgenAntal, double middagAntal, double aftenAntal,
 												double natAntal, Dosis dosis) {
-		DagligFast df = new DagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal, dosis, patient);
+		DagligFast df = new DagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal, dosis);
 		if (startDen.isAfter(slutDen)) throw new IllegalArgumentException("Startdato er efter slutdato");
 		return df;
 	}
@@ -66,8 +66,8 @@ public class Controller {
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
 			LocalDate slutDen, Laegemiddel laegemiddel,
 			ArrayList<Dosis> doser) {
-		DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel, doser);
-		return null;
+		DagligSkaev ds = new DagligSkaev(startDen, slutDen, laegemiddel);
+		return ds;
 	}
 
 	/**
@@ -77,7 +77,12 @@ public class Controller {
 	 * Pre: ordination og dato er ikke null
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-		// TODO
+		if (dato.isBefore(ordination.getStartDen())) {
+			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
+		}
+		if (dato.isAfter(ordination.getSlutDen())) {
+			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
+		}
 	}
 
 	/**
@@ -87,8 +92,17 @@ public class Controller {
 	 * Pre: patient og lægemiddel er ikke null
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
-		//TODO
-		return 0;
+
+		double vægt = patient.getVaegt();
+		double dosis = 0;
+		if(vægt<25){
+			dosis = laegemiddel.getEnhedPrKgPrDoegnLet();
+		} else if (vægt<121) {
+			dosis = laegemiddel.getEnhedPrKgPrDoegnNormal();
+		}else{
+			dosis = laegemiddel.getEnhedPrKgPrDoegnTung();
+		}
+		return dosis;
 	}
 
 	/**
@@ -96,10 +110,21 @@ public class Controller {
 	 * ordinationer.
 	 * Pre: laegemiddel er ikke null
 	 */
-	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
-			double vægtSlut, Laegemiddel laegemiddel) {
-		// TODO
-		return 0;
+	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart, double vægtSlut, Laegemiddel laegemiddel) {
+		int patientCount = 0;
+		ArrayList<Patient> patienter = new ArrayList<>(storage.getAllPatienter());
+		for (Patient p : patienter) {
+			double patientvægt = p.getVaegt();
+			ArrayList<Ordination> ordinationer = new ArrayList<>(p.getOrdinationer());
+			for (Ordination o : ordinationer) {
+				if (o.getLaegemiddel() == laegemiddel) {
+					if (patientvægt >= vægtStart && patientvægt <= vægtSlut) {
+						patientCount ++;
+					}
+				}
+			}
+		}
+		return patientCount;
 	}
 
 	public List<Patient> getAllPatienter() {
