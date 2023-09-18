@@ -5,12 +5,16 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-public class DagligSkaev extends Ordination{
+public class DagligSkaev extends Ordination {
     private ArrayList<Dosis> doser = new ArrayList<>();
-    private Patient patient;
 
-    public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
+
+    public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, LocalTime[] klokkeSlet, double[] antalEnheder) {
         super(startDen, slutDen, laegemiddel);
+        for (int i = 0; i < klokkeSlet.length; i++) {
+            opretDosis(klokkeSlet[i], antalEnheder[i]);
+
+        }
     }
 
 
@@ -22,8 +26,8 @@ public class DagligSkaev extends Ordination{
     @Override
     public double samletDosis() {
         double samletDosis = 0;
-        for(Dosis d : doser){
-            if(d != null) {
+        for (Dosis d : doser) {
+            if (d != null) {
                 samletDosis += d.getAntal();
             }
         }
@@ -36,8 +40,7 @@ public class DagligSkaev extends Ordination{
 
         if (antalDage == 0) {
             return 0.0;
-        }
-        else {
+        } else {
             double totalDosis = 0.0;
             for (Dosis d : doser) {
                 totalDosis += d.getAntal();
@@ -48,6 +51,6 @@ public class DagligSkaev extends Ordination{
 
     @Override
     public String getType() {
-        return null;
+        return this.getClass().getName();
     }
 }
