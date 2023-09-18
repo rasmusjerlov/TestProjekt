@@ -50,7 +50,7 @@ public class Controller {
 	public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel,
 												double morgenAntal, double middagAntal, double aftenAntal,
 												double natAntal, Dosis dosis) {
-		DagligFast df = new DagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal, dosis, patient);
+		DagligFast df = new DagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal, dosis);
 		if (startDen.isAfter(slutDen)) throw new IllegalArgumentException("Startdato er efter slutdato");
 		return df;
 	}
@@ -110,8 +110,7 @@ public class Controller {
 	 * ordinationer.
 	 * Pre: laegemiddel er ikke null
 	 */
-	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
-			double vægtSlut, Laegemiddel laegemiddel) {
+	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart, double vægtSlut, Laegemiddel laegemiddel) {
 		int patientCount = 0;
 		ArrayList<Patient> patienter = new ArrayList<>(storage.getAllPatienter());
 		for (Patient p : patienter) {
