@@ -58,5 +58,5 @@ public class DagligFast extends Ordination{
 
         return this.getClass().getName();
     }
-
+    // TODO
 }
