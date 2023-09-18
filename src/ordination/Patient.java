@@ -11,7 +11,7 @@ public class Patient {
         this.cprnr = cprnr;
         this.navn = navn;
         this.vaegt = vaegt;
-        System.out.println('2fghjk');
+
     }
 
     public String getCprnr() {
