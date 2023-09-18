@@ -10,7 +10,7 @@ public class DagligSkaev extends Ordination{
     private Patient patient;
 
     public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Patient patient, ArrayList<Dosis> dosis) {
-        super(startDen, slutDen, laegemiddel, patient);
+        super(startDen, slutDen, laegemiddel);
         this.dosis = dosis;
     }
 
@@ -23,7 +23,7 @@ public class DagligSkaev extends Ordination{
     @Override
     public double samletDosis() {
         double samletDosis = 0;
-        for(Dosis d : doser){
+        for(Dosis d : dosis){
             if(d != null) {
                 samletDosis += d.getAntal();
             }
