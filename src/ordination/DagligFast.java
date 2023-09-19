@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class DagligFast extends Ordination{
@@ -32,26 +33,23 @@ public class DagligFast extends Ordination{
     }
     @Override
     public double samletDosis() {
-        double samletDosis = 0;
-        for(Dosis d : doser){
-            if(d != null) {
-                samletDosis += d.getAntal();
-            }
-        }
-        return samletDosis;
+        return doegnDosis() * super.antalDage();
     }
 
 
 
     @Override
     public double doegnDosis() {
-        double totalDosis = 0.0;
-        for (Dosis dosis : doser) {
-            if (dosis != null){
-                totalDosis += dosis.getAntal();
+        int antalDage = super.antalDage();
+        if (antalDage == 0) {
+            return 0.0;
+        } else {
+            double totalDosis = 0.0;
+            for (Dosis d : doser) {
+                totalDosis += d.getAntal();
             }
+            return totalDosis;
         }
-        return totalDosis;
     }
 
 
