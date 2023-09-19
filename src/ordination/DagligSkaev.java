@@ -25,19 +25,12 @@ public class DagligSkaev extends Ordination {
 
     @Override
     public double samletDosis() {
-        double samletDosis = 0;
-        for (Dosis d : doser) {
-            if (d != null) {
-                samletDosis += d.getAntal();
-            }
-        }
-        return samletDosis;
+        return doegnDosis() * super.antalDage();
     }
 
     @Override
     public double doegnDosis() {
-        int antalDage = (int) ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
-
+        int antalDage = super.antalDage();
         if (antalDage == 0) {
             return 0.0;
         } else {
@@ -45,7 +38,7 @@ public class DagligSkaev extends Ordination {
             for (Dosis d : doser) {
                 totalDosis += d.getAntal();
             }
-            return totalDosis / antalDage;
+            return totalDosis;
         }
     }
 

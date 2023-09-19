@@ -99,7 +99,7 @@ public class Controller {
 			dosis = laegemiddel.getEnhedPrKgPrDoegnLet();
 		} else if (vægt<=120.0) {
 			dosis = laegemiddel.getEnhedPrKgPrDoegnNormal();
-		}else{
+		} else{
 			dosis = laegemiddel.getEnhedPrKgPrDoegnTung();
 		}
 		return dosis;
