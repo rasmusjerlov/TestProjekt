@@ -97,7 +97,7 @@ public class Controller {
 		double dosis = 0;
 		if(vægt<25){
 			dosis = laegemiddel.getEnhedPrKgPrDoegnLet();
-		} else if (vægt<121) {
+		} else if (vægt<=120.0) {
 			dosis = laegemiddel.getEnhedPrKgPrDoegnNormal();
 		}else{
 			dosis = laegemiddel.getEnhedPrKgPrDoegnTung();
@@ -170,6 +170,11 @@ public class Controller {
 		this.opretPatient("050972-1233", "Hans Jørgensen", 89.4);
 		this.opretPatient("011064-1522", "Ulla Nielsen", 59.9);
 		this.opretPatient("090149-2529", "Ib Hansen", 87.7);
+		this.opretPatient("070397-0915", "Mikael Petersen", 24.0);
+		this.opretPatient("010195-1286", "Yrsa Hartung", 121);
+		this.opretPatient("030300-1074", "Olga Jensen", 25);
+		this.opretPatient("090990-1369", "Hans Jensen", 120);
+
 
 		this.opretLaegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
 		this.opretLaegemiddel("Paracetamol", 1, 1.5, 2, "Ml");

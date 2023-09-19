@@ -25,7 +25,7 @@ public class DagligFast extends Ordination{
     public void opretDosis (LocalTime tid, double antal) {
         Dosis dosis = new Dosis(tid, antal);
         for (int i = 0; i < doser.length; i++) {
-            if (doser[i] == null) {
+            if (doser[i] == null && antal>0) {
                 doser[i] = dosis;
             }
         }

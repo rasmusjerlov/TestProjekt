@@ -1,6 +1,7 @@
 package ordination;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class PN extends Ordination{
@@ -28,11 +29,11 @@ public class PN extends Ordination{
     public double doegnDosis() {
         //gennemsnit pr døgn
 
-
+        LocalDate sidste = antalGivet.get(antalGivet.size());
         int antalGangeGivet = getAntalGangeGivet();
-        int antalDage = antalDage();
+        int antalDage = (int) ChronoUnit.DAYS.between(getStartDen(), sidste);
 
-        double gennemsnitligDosisPrDag = (antalGangeGivet * antalEnheder) / antalDage;
+        double gennemsnitligDosisPrDag = (antalGangeGivet * antalEnheder) /  antalDage;
 
         return gennemsnitligDosisPrDag;
     }
