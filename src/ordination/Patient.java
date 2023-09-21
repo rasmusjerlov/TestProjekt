@@ -36,7 +36,7 @@ public class Patient {
     public void setVaegt(double vaegt){
         this.vaegt = vaegt;
     }
-    //TODO: Metoder (med specifikation) til at vedligeholde link til Ordination
+
 
     public PN createPn(LocalDate startDen, LocalDate slutDen,
                       Laegemiddel laegemiddel, double antal){
@@ -68,6 +68,6 @@ public class Patient {
     }
 
     public ArrayList<Ordination> getOrdinationer() {
-        return ordinationer;
+        return new ArrayList<>(ordinationer);
     }
 }

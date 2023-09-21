@@ -7,17 +7,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DagligFastTest extends Ordination {
+class DagligFastTest {
 
     private DagligFast df;
     private Laegemiddel laegemiddel;
-
-    public DagligFastTest(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
-        super(startDen, slutDen, laegemiddel);
-    }
 
     @BeforeEach
     void setUp() {
@@ -42,14 +39,36 @@ class DagligFastTest extends Ordination {
 
     @Test
     void testSamletDosis() {
+        //Arrange
+
+        //Act
+        double sd = df.samletDosis();
+
+        //Assert
+        assertEquals(96, sd);
     }
 
     @Test
     void testDoegnDosis() {
+        //Arrange
+        //LocalDate ld = LocalDate.of(2023, 9,21);
+
+        //Act
+        double dd = df.doegnDosis();
+
+
+        //Assert
+        assertEquals(4, dd);
     }
 
     @Test
     void testGetType() {
+        //Act
+        String name = df.getType();
+
+        //Assert
+        assertTrue("DagligFast".equals(name));
+
     }
 
     @Test
@@ -58,21 +77,6 @@ class DagligFastTest extends Ordination {
         df.getDoser();
 
         //Assert
-        assert
-    }
 
-    @Override
-    public double samletDosis() {
-        return 0;
-    }
-
-    @Override
-    public double doegnDosis() {
-        return 0;
-    }
-
-    @Override
-    public String getType() {
-        return null;
     }
 }

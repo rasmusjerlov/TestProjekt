@@ -211,6 +211,7 @@ public class Controller {
 		this.opretDagligSkaevOrdination(LocalDate.of(2021, 1, 23),
 				LocalDate.of(2021, 1, 24), storage.getAllPatienter().get(1),
 				storage.getAllLaegemidler().get(2), kl, an);
+
 	}
 
 }
