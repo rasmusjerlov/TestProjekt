@@ -16,6 +16,10 @@ public class Controller {
 		storage = new Storage();
 	}
 
+	public Storage getStorage() {
+		return storage;
+	}
+
 	public static Controller getController() {
 		if (controller == null) {
 			controller = new Controller();
