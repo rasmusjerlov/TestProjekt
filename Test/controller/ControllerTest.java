@@ -1,6 +1,7 @@
 package controller;
 
 import ordination.Laegemiddel;
+import ordination.Ordination;
 import ordination.PN;
 import ordination.Patient;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,8 +22,10 @@ class ControllerTest {
     private Patient Olga ;
     private Patient Hans ;
     private Patient Yrsa;
+    private Patient p = new Patient("1234592111", "Rasmus", 85.5);
 
     private Laegemiddel laegemiddel;
+    private PN ordination;
 
     @BeforeEach
     void setUp() {
@@ -167,5 +170,29 @@ class ControllerTest {
 
         //Assert
         assertTrue(s.getAllLaegemidler().contains(L1));
+    }
+    //public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
+    //		if (dato.isBefore(ordination.getStartDen())) {
+    //			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
+    //		}
+    //		if (dato.isAfter(ordination.getSlutDen())) {
+    //			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
+    //		}
+    //	}
+    @Test
+    void ordinationPNAnvendt_TC1() {
+
+        //Arrange
+        LocalDate start = LocalDate.of(2023, 9, 21);
+        LocalDate slut = LocalDate.of(2023, 9, 24);
+        double antal = 2;
+
+        //Act
+        ordination = c.opretPNOrdination(start, slut, p, laegemiddel, antal);
+
+        //Assert
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            c.ordinationPNAnvendt(ordination, LocalDate.now());
+        }
     }
 }
