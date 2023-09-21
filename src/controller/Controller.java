@@ -107,7 +107,7 @@ public class Controller {
 		} else{
 			dosis = laegemiddel.getEnhedPrKgPrDoegnTung();
 		}
-		return dosis;
+		return dosis * patient.getVaegt();
 	}
 
 	/**

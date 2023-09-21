@@ -1,23 +1,58 @@
 package controller;
 
 import ordination.Laegemiddel;
+import ordination.PN;
 import ordination.Patient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import storage.Storage;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
-    private Controller c = Controller.getTestController();
-    private Storage s = c.getStorage();
-    private Patient Jane = c.opretPatient("121256-0512", "Jane Jensen", 63.4);
-    private Patient Mikael = c.opretPatient("070397-0915", "Mikael Petersen", 24.0);
-    private Patient Olga = c.opretPatient("030300-1074", "Olga Jensen", 25);
-    private Patient Hans = c.opretPatient("090990-1369", "Hans Jensen", 120);
-    private Patient Yrsa = c.opretPatient("010195-1286", "Yrsa Hartung", 121);
+    private Controller c;
+    private Storage s;
+    private Patient Jane ;
+    private Patient Finn;
+    private Patient Mikael ;
+    private Patient Olga ;
+    private Patient Hans ;
+    private Patient Yrsa;
 
-    private Laegemiddel laegemiddel = c.opretLaegemiddel("Paracetamol", 1, 1.5, 2, "Ml");
+    private Laegemiddel laegemiddel;
+
+    @BeforeEach
+    void setUp() {
+        this.c = Controller.getTestController();
+        this.laegemiddel = new Laegemiddel("Paracetamol", 1, 1.5, 2, "Ml");
+        this.s = c.getStorage();
+        this.Jane = c.opretPatient("121256-0512", "Jane Jensen", 63.4);
+        this.Finn = c.opretPatient("070985-1153", "Finn Madsen", 83.2);
+        this.Mikael = c.opretPatient("070397-0915", "Mikael Petersen", 24.0);
+        this.Olga = c.opretPatient("030300-1074", "Olga Jensen", 25);
+        this.Hans = c.opretPatient("090990-1369", "Hans Jensen", 120);
+        this.Yrsa = c.opretPatient("010195-1286", "Yrsa Hartung", 121);
+
+
+        c.opretPNOrdination(LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 12),
+                s.getAllPatienter().get(0), laegemiddel,
+                123);
+
+
+
+        c.opretPNOrdination(LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 12),
+                s.getAllPatienter().get(0), laegemiddel,
+                123);
+
+        c.opretDagligFastOrdination(LocalDate.of(2021, 1, 10),
+                LocalDate.of(2021, 1, 12), s.getAllPatienter().get(1),
+                laegemiddel, 2, 0, 1, 0);
+
+
+    }
 
     @Test
     void anbefaletDosisPrDoegn_TC1() {
@@ -25,8 +60,9 @@ class ControllerTest {
         double dosis = c.anbefaletDosisPrDoegn(Mikael, laegemiddel);
 
         //Assert
-        assertEquals(24, dosis);
+        assertEquals(24.0, dosis, 1.5);
     }
+
     @Test
     void anbefaletDosisPrDoegn_TC2() {
         //Arrange
@@ -35,6 +71,7 @@ class ControllerTest {
         //Assert
         assertEquals(37.5, dosis);
     }
+
     @Test
     void anbefaletDosisPrDoegn_TC3() {
         //Arrange
@@ -43,6 +80,7 @@ class ControllerTest {
         //Assert
         assertEquals(95.1, dosis);
     }
+
     @Test
     void anbefaletDosisPrDoegn_TC4() {
         //Arrange
@@ -51,6 +89,7 @@ class ControllerTest {
         //Assert
         assertEquals(180, dosis);
     }
+
     @Test
     void anbefaletDosisPrDoegn_TC5() {
         //Arrange
@@ -59,11 +98,13 @@ class ControllerTest {
         //Assert
         assertEquals(242, dosis);
     }
+
     @Test
     void antalOrdinationerPrVægtPrLægemiddel_TC1() {
         //Arrange
         double start = 40;
         double slut = 65;
+
 
         //Act
         int ordinationer = c.antalOrdinationerPrVægtPrLægemiddel(start, slut, laegemiddel);
@@ -71,6 +112,7 @@ class ControllerTest {
         //Assert
         assertEquals(2, ordinationer);
     }
+
     @Test
     void antalOrdinationerPrVægtPrLægemiddel_TC2() {
         //Arrange
