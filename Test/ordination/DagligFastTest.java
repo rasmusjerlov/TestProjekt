@@ -63,10 +63,10 @@ class DagligFastTest {
     @Test
     void getDoser() {
         //Act
-        df.getDoser();
+        Dosis[] doser = df.getDoser();
 
         //Assert
-        assertTrue(df.getDoser().length == 4);
+        assertTrue(doser.length == 4);
 
     }
 }
