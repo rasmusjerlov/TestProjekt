@@ -38,7 +38,7 @@ public class Patient {
     }
     //TODO: Metoder (med specifikation) til at vedligeholde link til Ordination
 
-    public PN creatPn(LocalDate startDen, LocalDate slutDen,
+    public PN createPn(LocalDate startDen, LocalDate slutDen,
                       Laegemiddel laegemiddel, double antal){
         PN pn = new PN(startDen, slutDen, laegemiddel, antal);
         ordinationer.add(pn);

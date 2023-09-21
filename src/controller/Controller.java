@@ -36,7 +36,7 @@ public class Controller {
 	 */
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
 								Laegemiddel laegemiddel, double antal) {
-		PN pn = patient.creatPn(startDen, slutDen, laegemiddel, antal);
+		PN pn = patient.createPn(startDen, slutDen, laegemiddel, antal);
 		if (startDen.isAfter(slutDen)) throw new IllegalArgumentException("Startdato er efter slutdato");
 		return pn;
 	}
@@ -174,7 +174,6 @@ public class Controller {
 		this.opretPatient("010195-1286", "Yrsa Hartung", 121);
 		this.opretPatient("030300-1074", "Olga Jensen", 25);
 		this.opretPatient("090990-1369", "Hans Jensen", 120);
-
 
 		this.opretLaegemiddel("Acetylsalicylsyre", 0.1, 0.15, 0.16, "Styk");
 		this.opretLaegemiddel("Paracetamol", 1, 1.5, 2, "Ml");
