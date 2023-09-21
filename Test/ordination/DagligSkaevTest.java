@@ -25,24 +25,38 @@ class DagligSkaevTest {
 
     @Test
     void samletDosis() {
-        assertEquals(80, ds.samletDosis());
+        //Act
+        double samlet = ds.samletDosis();
+
+        //Assert
+        assertEquals(80, samlet);
     }
 
     @Test
     void doegnDosis() {
-        assertEquals(10, ds.doegnDosis());
+        //Act
+        double doegn = ds.doegnDosis();
+
+        //Assert
+        assertEquals(10, doegn);
     }
 
     @Test
     void getType() {
+        //Act
+        String type = ds.getType();
+
+        //Assert
         assertEquals("ordination.DagligSkaev", ds.getType());
     }
 
     @Test
     void getDoser() {
+        //Act
+        Dosis[] doser = ds.getDoser();
 
-        ds.getDoser();
-        assertTrue(ds.getDoser().length==4);
+        //Assert
+        assertTrue(doser.length==4);
 
     }
 }
