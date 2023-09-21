@@ -23,7 +23,7 @@ public class DagligFast extends Ordination{
 
     }
 
-    public void opretDosis (LocalTime tid, double antal) {
+    private void opretDosis (LocalTime tid, double antal) {
         Dosis dosis = new Dosis(tid, antal);
         for (int i = 0; i < doser.length; i++) {
             if (doser[i] == null && antal>0) {
@@ -57,6 +57,7 @@ public class DagligFast extends Ordination{
     public String getType() {
 
         return this.getClass().getName();
+
     }
 
     public Dosis[] getDoser() {

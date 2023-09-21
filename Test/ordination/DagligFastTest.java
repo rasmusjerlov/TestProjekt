@@ -23,19 +23,7 @@ class DagligFastTest {
 
     }
 
-    @Test
-    void opretDosis() {
-        //Arrange
-        LocalTime tid = LocalTime.of(15,00);
-        double antal = 4;
-        Dosis dosis = new Dosis(tid, antal);
 
-        //Act
-        df.opretDosis(tid, antal);
-        List liste = Arrays.asList(df.getDoser());
-        //Assert
-
-    }
 
     @Test
     void testSamletDosis() {
@@ -58,7 +46,7 @@ class DagligFastTest {
 
 
         //Assert
-        assertEquals(4, dd);
+        assertEquals(12, dd);
     }
 
     @Test
@@ -66,8 +54,9 @@ class DagligFastTest {
         //Act
         String name = df.getType();
 
+
         //Assert
-        assertTrue("DagligFast".equals(name));
+        assertTrue("ordination.DagligFast".equals(name));
 
     }
 
@@ -77,6 +66,7 @@ class DagligFastTest {
         df.getDoser();
 
         //Assert
+        assertTrue(df.getDoser().length == 4);
 
     }
 }

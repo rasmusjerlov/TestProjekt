@@ -52,6 +52,7 @@ public class Controller {
 												double natAntal) {
 		DagligFast df = patient.createDagligFast(startDen, slutDen, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
 		if (startDen.isAfter(slutDen)) throw new IllegalArgumentException("Startdato er efter slutdato");
+
 		return df;
 	}
 
