@@ -22,7 +22,13 @@ class DagligFastTest {
         this.df = new DagligFast(LocalDate.of(2023, 9, 21), LocalDate.of(2023,9,28), laegemiddel, 3, 3, 3, 3);
 
     }
+    @Test
+    void constructorTest(){
+        assertEquals(df.getStartDen(),LocalDate.of(2023, 9, 21));
+        assertEquals(df.getSlutDen(), LocalDate.of(2023,9,28));
+        assertEquals(df.getLaegemiddel(), laegemiddel);
 
+    }
 
 
     @Test

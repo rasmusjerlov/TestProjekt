@@ -24,7 +24,10 @@ class DagligSkaevTest {
     }
     @Test
     void constructorTest(){
-        assertEquals(ds.getStartDen().equals(LocalDate.of(2023, 9, 21)));
+        assertEquals(ds.getStartDen(),LocalDate.of(2023, 9, 21));
+        assertEquals(ds.getSlutDen(), LocalDate.of(2023,9,28));
+        assertEquals(ds.getLaegemiddel(), laegemiddel);
+
     }
 
     @Test
