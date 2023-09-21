@@ -171,14 +171,7 @@ class ControllerTest {
         //Assert
         assertTrue(s.getAllLaegemidler().contains(L1));
     }
-    //public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-    //		if (dato.isBefore(ordination.getStartDen())) {
-    //			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
-    //		}
-    //		if (dato.isAfter(ordination.getSlutDen())) {
-    //			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
-    //		}
-    //	}
+
     @Test
     void ordinationPNAnvendt_TC1() {
 
@@ -189,10 +182,28 @@ class ControllerTest {
 
         //Act
         ordination = c.opretPNOrdination(start, slut, p, laegemiddel, antal);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+                    c.ordinationPNAnvendt(ordination, LocalDate.of(2023,9,20));
+                });
 
         //Assert
+        assertEquals(exception.getMessage(), "Datoen er ikke indenfor ordinationens gyldighedsperiode");
+    }
+    @Test
+    void ordinationPNAnvendt_TC2() {
+
+        //Arrange
+        LocalDate start = LocalDate.of(2023, 9, 21);
+        LocalDate slut = LocalDate.of(2023, 9, 24);
+        double antal = 2;
+
+        //Act
+        ordination = c.opretPNOrdination(start, slut, p, laegemiddel, antal);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            c.ordinationPNAnvendt(ordination, LocalDate.now());
-        }
+            c.ordinationPNAnvendt(ordination, LocalDate.of(2023,9,28));
+        });
+
+        //Assert
+        assertEquals(exception.getMessage(), "Datoen er ikke indenfor ordinationens gyldighedsperiode");
     }
 }

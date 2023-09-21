@@ -88,6 +88,7 @@ public class Controller {
 		if (dato.isAfter(ordination.getSlutDen())) {
 			throw new IllegalArgumentException("Datoen er ikke indenfor ordinationens gyldighedsperiode");
 		}
+		ordination.givDosis(dato);
 	}
 
 	/**
