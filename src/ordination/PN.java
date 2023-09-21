@@ -29,9 +29,9 @@ public class PN extends Ordination{
     public double doegnDosis() {
         //gennemsnit pr døgn
 
-        LocalDate sidste = antalGivet.get(antalGivet.size());
+        LocalDate sidste = antalGivet.get(antalGivet.size()-1);
         int antalGangeGivet = getAntalGangeGivet();
-        int antalDage = (int) ChronoUnit.DAYS.between(getStartDen(), sidste);
+        int antalDage = (int) ChronoUnit.DAYS.between(getStartDen(), sidste)+1;
 
         double gennemsnitligDosisPrDag = (antalGangeGivet * antalEnheder) /  antalDage;
 
@@ -48,9 +48,12 @@ public class PN extends Ordination{
         return getAntalGangeGivet() * antalEnheder;
     }
 
+    public ArrayList<LocalDate> getAntalGivet() {
+        return new ArrayList<>(antalGivet);
+    }
 
     public int getAntalGangeGivet() {
-        return  antalGivet.size() + 1;
+        return  antalGivet.size();
     }
 
     public double getAntalEnheder() {
