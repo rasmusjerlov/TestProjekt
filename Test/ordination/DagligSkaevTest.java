@@ -22,6 +22,10 @@ class DagligSkaevTest {
         ds = new DagligSkaev(LocalDate.of(2023, 9, 21), LocalDate.of(2023,9,28), laegemiddel, kl, antal);
 
     }
+    @Test
+    void constructorTest(){
+        assertEquals(ds.getStartDen().equals(LocalDate.of(2023, 9, 21)));
+    }
 
     @Test
     void samletDosis() {

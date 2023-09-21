@@ -24,7 +24,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Mockito" level="application" />
-    <orderEntry type="library" name="javafx-swt" level="application" />
+    <orderEntry type="library" name="javafx" level="application" />
+    <orderEntry type="library" name="mokito" level="application" />
   </component>
 </module>
