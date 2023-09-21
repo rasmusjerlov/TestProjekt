@@ -18,7 +18,7 @@ public class DagligSkaev extends Ordination {
     }
 
 
-    public void opretDosis(LocalTime tid, double antal) {
+    private void opretDosis(LocalTime tid, double antal) {
         Dosis dosis = new Dosis(tid, antal);
         this.doser.add(dosis);
     }
